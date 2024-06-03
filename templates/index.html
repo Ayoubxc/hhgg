@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Facebook Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Create Facebook Account</h1>
+    <form id="create-account-form" method="POST" action="/create-facebook-account">
+        <button type="submit">Create Account</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('create-account-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const response = await fetch('/create-facebook-account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+            if (result.error) {
+                resultDiv.textContent = `Error: ${result.error}`;
+            } else {
+                resultDiv.textContent = `Account Created! Email: ${result.email}@gmail.com, Password: ${result.password}`;
+            }
+        });
+    </script>
+</body>
+</html>
