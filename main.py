@@ -1,8 +1,7 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
+from bs4 import BeautifulSoup
 import requests
 import random
-from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 
 app = Flask(__name__)
 
@@ -15,7 +14,7 @@ class FacebookAccountCreator:
         self.email = random.choice('klxjxjwa') + "".join(random.choice("1234567890qpwoeirutyalskdjfhgmznxbcv") for _ in range(15))
         self.name = "sajad"
         self.name2 = "bro"
-        self.user_agent = UserAgent().random
+        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 
     def create_account(self):
         self.get_cookies()
@@ -75,7 +74,7 @@ class FacebookAccountCreator:
             return {"error": "There was an error with your registration. Please try again."}
 
 @app.route('/')
-def index():
+def display_webview():
     return render_template('index.html')
 
 @app.route('/create-facebook-account', methods=['POST'])
@@ -85,4 +84,4 @@ def create_facebook_account():
     return jsonify(account_details)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
