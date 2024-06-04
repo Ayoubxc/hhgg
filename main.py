@@ -12,9 +12,9 @@ class FacebookAccountCreator:
         }
         self.password = "".join(random.choice("1234567890qpwoeirutyalskdjfhgmznxbcv") for _ in range(10))
         self.email = random.choice('klxjxjwa') + "".join(random.choice("1234567890qpwoeirutyalskdjfhgmznxbcv") for _ in range(15))
-        self.name = "sajad"
-        self.name2 = "bro"
-        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        self.name = "nino" 
+        self.name2 = "haha"
+        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, مثل Gecko) Chrome/58.0.3029.110 Safari/537.3"
 
     def create_account(self):
         self.get_cookies()
